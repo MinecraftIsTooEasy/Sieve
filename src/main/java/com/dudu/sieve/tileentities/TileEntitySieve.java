@@ -1,24 +1,22 @@
 package com.dudu.sieve.tileentities;
 
+import com.dudu.sieve.particles.ParticlesHelper;
 import com.dudu.sieve.blocks.Blocks;
-import java.util.ArrayList;
-import java.util.Iterator;
+import com.dudu.sieve.SieveRegistry;
+import com.dudu.sieve.helpers.SiftReward;
 
-import net.minecraft.Block;
+import net.xiaoyu233.fml.util.Log;
+
 import net.minecraft.EntityItem;
-import net.minecraft.Icon;
 import net.minecraft.ItemStack;
-import net.minecraft.Minecraft;
 import net.minecraft.NBTTagCompound;
 import net.minecraft.Packet;
 import net.minecraft.Packet132TileEntityData;
 import net.minecraft.TileEntity;
-import com.dudu.sieve.particles.ParticleSieve;
-import com.dudu.sieve.SieveRegistry;
-import com.dudu.sieve.helpers.SiftReward;
-import net.xiaoyu233.fml.util.Log;
-import org.lwjgl.util.Color;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import org.lwjgl.util.Color;
 
 public class TileEntitySieve extends TileEntity{
 	private static final float MIN_RENDER_CAPACITY = 0.70f;
@@ -66,7 +64,7 @@ public class TileEntitySieve extends TileEntity{
 	{
 		if(worldObj.isRemote && particleMode)
 		{
-			spawnFX(contentID, contentMeta);
+			ParticlesHelper.spawnSieveParticles(worldObj, xCoord, yCoord, zCoord, contentID, contentMeta);
 		}
 
 		timer++;
@@ -136,26 +134,6 @@ public class TileEntitySieve extends TileEntity{
 		}
 
 		update = true;
-	}
-    
-	private void spawnFX(int blockID, int blockMeta)
-	{
-		Block block = Block.blocksList[blockID];
-		if (block != null)
-		{
-			Icon icon = block.getIcon(0, blockMeta);
-
-			for (int x = 0; x < 4; x++)
-			{
-				ParticleSieve dust = new ParticleSieve(worldObj,
-						xCoord + 0.8d * worldObj.rand.nextFloat() + 0.15d,
-						yCoord + 0.69d,
-						zCoord + 0.8d * worldObj.rand.nextFloat() + 0.15d,
-						0.0d, 0.0d, 0.0d, icon);
-
-				Minecraft.getMinecraft().effectRenderer.addEffect(dust);
-			}
-		}
 	}
 
 	public float getAdjustedVolume()
