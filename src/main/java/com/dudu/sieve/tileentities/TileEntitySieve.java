@@ -16,14 +16,12 @@ import net.minecraft.TileEntity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.lwjgl.util.Color;
 
 public class TileEntitySieve extends TileEntity{
 	private static final float MIN_RENDER_CAPACITY = 0.70f;
 	private static final float MAX_RENDER_CAPACITY = 0.9f;
 	private static final float PROCESSING_INTERVAL = 0.075f;
 	private static final int UPDATE_INTERVAL = 20;
-	private Color color = new Color(1,1,1,1);
 
 	public int contentID = 0;
 	public int contentMeta = 0;

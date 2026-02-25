@@ -20,7 +20,7 @@
   "mixins": [
     "sieve.mixins.json"
   ],
-  "accessWidener": "sieve.accesswidener",
+  "accessWidener": "sieve.accessWidener",
   "icon": "pack.png",
   "contact": {
     "homepage": "https://github.com/dudu-Dev0/Sieve",
